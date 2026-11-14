@@ -1,0 +1,13 @@
+# A probe of the registration of workflows; removed with its branch.
+name: probe
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: "true"
