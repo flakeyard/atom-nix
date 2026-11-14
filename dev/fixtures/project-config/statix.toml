@@ -1,0 +1,2 @@
+# The project's statix configuration, which replaces the default of the atom.
+disabled = ["useless_parens"]

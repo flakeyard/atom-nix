@@ -27,6 +27,7 @@ in
     (upstream "git-hooks" atomInputs.git-hooks.flakeModule)
     ./treefmt.nix
     (import ./hooks.nix { inherit root; })
+    (import ./checks.nix { inherit (atomInputs) git-hooks; })
     ./shell.nix
   ];
 }

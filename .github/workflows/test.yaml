@@ -34,8 +34,10 @@ jobs:
       needs: ${{ toJSON(needs) }}
       flake: ./dev
       expect-checks: >-
-        ["test-follows","test-formatter","test-next-major",
-        "test-relative-paths","test-statix-lints","treefmt"]
+        ["nix","test-bad","test-configs","test-configs-project",
+        "test-excluded","test-follows","test-formatter","test-good",
+        "test-next-major","test-not-excluded","test-relative-paths",
+        "test-statix-lints","treefmt"]
       # The tests against the current upstream revisions (FY-0017, FY-0038).
       override-inputs: >-
         ${{ github.event_name == 'schedule'
