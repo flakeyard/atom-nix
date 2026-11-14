@@ -6,6 +6,7 @@
   config.perSystem =
     { config, pkgs, ... }:
     let
+      inherit (config.pre-commit.settings) hooks;
       warning = import ./warning.nix {
         inherit (pkgs) lib;
         file = ./next-major.nix;
@@ -16,6 +17,8 @@
         pkgs.mkShellNoCC {
           packages = [
             config.treefmt.programs.nixfmt.package
+            hooks.statix.package
+            hooks.deadnix.package
           ];
         }
       );
