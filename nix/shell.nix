@@ -19,6 +19,7 @@
             config.treefmt.programs.nixfmt.package
             hooks.statix.package
             hooks.deadnix.package
+            hooks.flakeyard-nix-relative-paths.package
           ];
         }
       );
