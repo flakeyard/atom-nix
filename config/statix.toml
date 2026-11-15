@@ -1,0 +1,37 @@
+# The default statix configuration of atom-nix, flakeyard's configuration of
+# statix (FY-0037:
+# https://github.com/flakeyard/decisions/blob/main/docs/adr/records/0037-atoms-ship-default-configs-that-projects-replace.md).
+#
+# A project replaces it wholly by committing its own statix.toml at the root;
+# nothing is merged. To change one setting, copy this file to statix.toml and
+# edit the copy.
+#
+# statix enables every lint that `disabled` does not name, so a new lint of
+# statix is enabled at once. Every lint is listed below, as enabled, so that
+# this file shows what runs and a new lint of statix is noticed by the tests of
+# the atom. To disable one, add its name to `disabled`, such as
+# disabled = ["eta_reduction"].
+#
+# W01 bool_comparison: a comparison with a boolean literal, `x == true`.
+# W02 empty_let_in: a `let in` without bindings.
+# W03 manual_inherit: `a = a;` instead of `inherit a;`.
+# W04 manual_inherit_from: `a = b.a;` instead of `inherit (b) a;`.
+# W05 legacy_let_syntax: the undocumented `let { body = ...; }`.
+# W06 collapsible_let_in: a `let in` whose body is another `let in`.
+# W07 eta_reduction: `x: f x` instead of `f`.
+# W08 useless_parens: parentheses that change nothing.
+# W10 empty_pattern: `{ ... }:` instead of `_:` for an ignored argument.
+# W11 redundant_pattern_bind: `inputs @ { ... }:` that captures nothing.
+# W12 unquoted_uri: a URI without quotes, which RFC 45 deprecates.
+# W14 empty_inherit: `inherit;` without names.
+# W17 deprecated_to_path: the deprecated `builtins.toPath`.
+# W18 bool_simplification: `!(a == b)` instead of `a != b`.
+# W19 useless_has_attr: `if x ? a then x.a else d` instead of `x.a or d`.
+# W20 repeated_keys: `a.b = 1; a.c = 2;` instead of `a = { b = 1; c = 2; };`.
+# W23 empty_list_concat: a concatenation with `[ ]`.
+disabled = []
+
+# No paths to skip: the hook passes statix the files that pre-commit selects,
+# and statix does not apply `ignore` to a file it is given. Projects skip files
+# with the excludes of git-hooks.nix.
+ignore = []

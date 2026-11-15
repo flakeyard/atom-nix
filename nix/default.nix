@@ -1,10 +1,11 @@
 # The root module of atom-nix (FY-0017). It fails when the consumer locks
 # treefmt-nix or git-hooks.nix a second time, imports the modules of both and
-# the atom's modules. The atom's inputs reach the other files only as function
-# arguments.
+# the atom's modules. The atom's inputs and the root of the repository reach
+# the other files only as function arguments (FY-0039).
 atomInputs:
 { inputs, ... }:
 let
+  root = ./..;
   # The module of an upstream flake, or the error that names the missing
   # follows line.
   upstream =
@@ -25,6 +26,7 @@ in
     (upstream "treefmt-nix" atomInputs.treefmt-nix.flakeModule)
     (upstream "git-hooks" atomInputs.git-hooks.flakeModule)
     ./treefmt.nix
+    (import ./hooks.nix { inherit root; })
     ./shell.nix
   ];
 }
