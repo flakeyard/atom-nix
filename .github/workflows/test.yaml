@@ -34,7 +34,7 @@ jobs:
       needs: ${{ toJSON(needs) }}
       flake: ./dev
       expect-checks: >-
-        ["nix","test-bad","test-configs","test-configs-project",
+        ["nix","shell","test-bad","test-configs","test-configs-project",
         "test-excluded","test-follows","test-formatter","test-good",
         "test-next-major","test-not-excluded","test-relative-paths",
         "test-statix-lints","treefmt"]
