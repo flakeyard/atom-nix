@@ -1,5 +1,31 @@
 {
   "nodes": {
+    "atom-shell": {
+      "inputs": {
+        "git-hooks": [
+          "git-hooks"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794760499,
+        "narHash": "sha256-/bO49KAeVKd92ctpzTyKXvBjM5/+65dISrjYcE1ce8c=",
+        "ref": "v0",
+        "rev": "c6191ba89fd4b4be340cbddfc3fdbeb7f82d3cc5",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/flakeyard/atom-shell"
+      },
+      "original": {
+        "ref": "v0",
+        "rev": "c6191ba89fd4b4be340cbddfc3fdbeb7f82d3cc5",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/flakeyard/atom-shell"
+      }
+    },
     "atom-workspace": {
       "locked": {
         "lastModified": 1794654303,
@@ -119,6 +145,7 @@
     },
     "root": {
       "inputs": {
+        "atom-shell": "atom-shell",
         "atom-workspace": "atom-workspace",
         "flake-parts": "flake-parts",
         "git-hooks": "git-hooks",

@@ -213,9 +213,11 @@ Nix store has the tools of the hooks. With Nix on the host, `direnv allow` or
 
 The public [`flake.nix`](flake.nix) holds only the inputs and the module
 ([FY-0017][fy-0017]). [`dev/flake.nix`](dev/flake.nix), with its own lock,
-imports the atom as consumers do, with atom-workspace, and holds the tests:
+imports the atom as consumers do, with [atom-shell][atom-shell] and
+atom-workspace, and holds the tests:
 
 - `nix`, `treefmt`: the atom's checks of this repository;
+- `shell`: the check of atom-shell of this repository;
 - `test-good`, `test-bad`, `test-configs-project`: the check of the fixture
   projects in [`dev/fixtures`](dev/fixtures), which pass, fail every hook and
   pass only with their own `statix.toml`;
@@ -281,5 +283,6 @@ provide them are not adopted yet ([FY-0038][fy-0038]).
 [fy-0039]:
   https://github.com/flakeyard/decisions/blob/main/docs/adr/records/0039-reach-repository-files-in-nix-from-one-root.md
 [versioning]: https://github.com/flakeyard/.github/blob/main/VERSIONING.md
+[atom-shell]: https://github.com/flakeyard/atom-shell
 [workflow-check]: https://github.com/flakeyard/workflow-check
 [workflow-release]: https://github.com/flakeyard/workflow-release
