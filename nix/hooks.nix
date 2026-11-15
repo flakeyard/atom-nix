@@ -1,6 +1,7 @@
-# The hooks statix and deadnix of git-hooks.nix, with the configuration that
-# the project chose (FY-0037). Their files, packages and arguments are the
-# single definition that the check of the domain also runs.
+# The hooks statix and deadnix of git-hooks.nix and the atom's own hook
+# flakeyard-nix-relative-paths (FY-0039), with the configuration that the
+# project chose (FY-0037). Their files, packages and arguments are the single
+# definition that the check also runs.
 { root }:
 { self, ... }:
 {
@@ -14,7 +15,7 @@
       ...
     }:
     let
-      inherit (config.pre-commit.settings.hooks) statix;
+      inherit (config.pre-commit.settings.hooks) statix flakeyard-nix-relative-paths;
       # The project's statix.toml at the root, else the default of the atom;
       # either one as a store path of its own.
       statixConfig =
@@ -47,6 +48,11 @@
           exit "$status"
         '';
       };
+      relativePaths = pkgs.writers.writePython3Bin "flakeyard-nix-relative-paths" {
+        # The tests of the atom check the script; a newer flake8 in the
+        # consumer's nixpkgs must not fail the hook.
+        doCheck = false;
+      } (builtins.readFile (root + "/scripts/relative-paths.py"));
     in
     {
       pre-commit.settings.hooks = {
@@ -68,6 +74,14 @@
           package = lib.mkOverride 900 pkgs.deadnix;
           # With --fail, which the hook always passes.
           settings.noUnderscore = lib.mkOverride 900 true;
+        };
+        flakeyard-nix-relative-paths = {
+          enable = lib.mkOverride 900 true;
+          name = lib.mkOverride 900 "flakeyard-nix-relative-paths";
+          description = lib.mkOverride 900 "Paths in Nix files that climb out of their directory (FY-0039).";
+          package = lib.mkOverride 900 relativePaths;
+          entry = lib.mkOverride 900 (lib.getExe flakeyard-nix-relative-paths.package);
+          files = lib.mkOverride 900 ''\.nix$'';
         };
       };
     };
