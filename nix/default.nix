@@ -32,6 +32,7 @@ in
     (import ./hooks.nix { inherit root; })
     (import ./checks.nix {
       inherit (atomInputs) git-hooks;
+      inherit (shared) domain;
       inherit warning;
     })
     (import ./shell.nix { inherit warning; })

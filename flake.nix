@@ -13,7 +13,7 @@
       # reach them.
       inputs.nixpkgs.follows = "treefmt-nix/nixpkgs";
     };
-    lib-atom.url = "git+https://github.com/flakeyard/lib-atom?ref=v0&rev=f2c83b7399315afb477abba1e112bca107f0b345&shallow=1";
+    lib-atom.url = "git+https://github.com/flakeyard/lib-atom?ref=v0&rev=747f5680bfded1108d25302ab59d105c35087a9b&shallow=1";
   };
 
   outputs = inputs: { flakeModules.default = import ./nix inputs; };
