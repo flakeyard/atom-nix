@@ -89,6 +89,12 @@ The public flake has two inputs, `treefmt-nix` (numtide/treefmt-nix) and
 `inputs.<name>.follows = "<name>";` when the consumer's input of the same name
 has another store path, before it imports that module.
 
+Amended for [FY-0040][fy-0040]: the public flake also declares `lib-atom`, which
+the atom pins in its own `flake.lock` and consumers neither declare nor follow.
+The check of `follows` and the warning of the next major version are the
+functions `upstream` and `warning` of lib-atom, with the same messages; the atom
+keeps no copy of them.
+
 The atom enables nixfmt in treefmt-nix and the hooks `statix`, `deadnix` and
 `flakeyard-nix-relative-paths`, and owns them. All values are set with
 `lib.mkOverride 900`, with packages of the consumer's `pkgs`:
@@ -153,21 +159,26 @@ warn with `lib.warn` of the consumer's nixpkgs: the version, the end of support
 
 `dev/flake.nix` imports the atom from the flake's own outputs called with the
 dev flake's `treefmt-nix` and `git-hooks`, which is what `follows` gives a
-consumer, together with atom-workspace, and checks this repository with it. Its
-checks evaluate on x86_64-linux and aarch64-linux: fixture projects that pass
-(with root anchors in entry files, `../` in comments, strings and URLs, and
-unused bindings that start with `_`), that fail every hook, that pass only with
-their own `statix.toml`, that a global exclude makes pass and that other
-excludes leave failing; tests of the configuration files, of the follows errors,
-of the next-major warning, of the formatter with atom-workspace, that
-`config/statix.toml` lists every lint of statix, and unit tests of the lexer on
-the edge cases of the lexical grammar of Nix.
+consumer, together with atom-workspace, and checks this repository with it. As
+amended for [FY-0040][fy-0040], the dev flake fetches the revision of lib-atom
+that the root `flake.lock` pins, gives it to the atom and takes the fixture
+projects and the tests of `follows` and the warning from its `internal/testing`,
+with the messages restated in the tests. Its checks evaluate on x86_64-linux and
+aarch64-linux: fixture projects that pass (with root anchors in entry files,
+`../` in comments, strings and URLs, and unused bindings that start with `_`),
+that fail every hook, that pass only with their own `statix.toml`, that a global
+exclude makes pass and that other excludes leave failing; tests of the
+configuration files, of the follows errors, of the next-major warning, of the
+formatter with atom-workspace, that `config/statix.toml` lists every lint of
+statix, and unit tests of the lexer on the edge cases of the lexical grammar of
+Nix.
 
 ## Constraints
 
-- The public flake MUST declare only the inputs `treefmt-nix` and `git-hooks`,
-  and MUST fail evaluation with the exact follows line when the consumer's input
-  of the same name has another store path.
+- The public flake MUST declare only the inputs `treefmt-nix`, `git-hooks` and
+  `lib-atom` ([FY-0040][fy-0040]), and MUST fail evaluation with the exact
+  follows line when the consumer's input of the same name has another store
+  path.
 - The atom MUST set nixfmt and the hooks `statix`, `deadnix` and
   `flakeyard-nix-relative-paths` only with `lib.mkOverride 900`, with packages
   of the consumer's `pkgs`.
@@ -237,3 +248,5 @@ the edge cases of the lexical grammar of Nix.
   https://github.com/flakeyard/decisions/blob/main/docs/adr/records/0038-roll-out-the-atoms.md
 [fy-0039]:
   https://github.com/flakeyard/decisions/blob/main/docs/adr/records/0039-reach-repository-files-in-nix-from-one-root.md
+[fy-0040]:
+  https://github.com/flakeyard/decisions/blob/main/docs/adr/records/0040-share-code-through-lib-repositories.md
