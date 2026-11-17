@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1](https://github.com/flakeyard/atom-nix/compare/v0.1.0...v0.1.1) (2026-11-17)
+
+
+### Bug Fixes
+
+* take the files of the domain from lib-atom 0.2.0 ([#14](https://github.com/flakeyard/atom-nix/issues/14)) ([05acd5e](https://github.com/flakeyard/atom-nix/commit/05acd5e43c37dec9971db000366d93e89a0c7bfc))
+* take the shared functions from lib-atom ([#12](https://github.com/flakeyard/atom-nix/issues/12)) ([afd2cd4](https://github.com/flakeyard/atom-nix/commit/afd2cd47ad03a79879533a43e2fe7ee6d1c6305d))
+
 ## 0.1.0 (2026-11-15)
 
 
