@@ -93,7 +93,9 @@ Amended for [FY-0040][fy-0040]: the public flake also declares `lib-atom`, which
 the atom pins in its own `flake.lock` and consumers neither declare nor follow.
 The check of `follows` and the warning of the next major version are the
 functions `upstream` and `warning` of lib-atom, with the same messages; the atom
-keeps no copy of them.
+keeps no copy of them. The source of `checks.nix`, filtered by the hooks'
+`files`, is the function `domain` of lib-atom 0.2.0, with the same files; the
+atom keeps no copy of it.
 
 The atom enables nixfmt in treefmt-nix and the hooks `statix`, `deadnix` and
 `flakeyard-nix-relative-paths`, and owns them. All values are set with
