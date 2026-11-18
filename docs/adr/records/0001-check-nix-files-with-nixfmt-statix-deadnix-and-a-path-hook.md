@@ -165,11 +165,11 @@ consumer, together with atom-workspace, and checks this repository with it. As
 amended for [FY-0040][fy-0040], the dev flake fetches the revision of lib-atom
 that the root `flake.lock` pins, gives it to the atom and takes the fixture
 projects and the tests of `follows` and the warning from its `internal/testing`,
-with the messages restated in the tests. Its checks evaluate on x86_64-linux and
-aarch64-linux: fixture projects that pass (with root anchors in entry files,
-`../` in comments, strings and URLs, and unused bindings that start with `_`),
-that fail every hook, that pass only with their own `statix.toml`, that a global
-exclude makes pass and that other excludes leave failing; tests of the
+with the messages restated in the tests. Its checks evaluate on `x86_64-linux`
+and `aarch64-linux`: fixture projects that pass (with root anchors in entry
+files, `../` in comments, strings and URLs, and unused bindings that start with
+`_`), that fail every hook, that pass only with their own `statix.toml`, that a
+global exclude makes pass and that other excludes leave failing; tests of the
 configuration files, of the follows errors, of the next-major warning, of the
 formatter with atom-workspace, that `config/statix.toml` lists every lint of
 statix, and unit tests of the lexer on the edge cases of the lexical grammar of
