@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/flakeyard/atom-nix/compare/v0.1.2...v0.1.3) (2026-11-19)
+
+
+### Bug Fixes
+
+* **deps:** update flake input lib-atom to 99d4af0 ([#30](https://github.com/flakeyard/atom-nix/issues/30)) ([8ae1ddf](https://github.com/flakeyard/atom-nix/commit/8ae1ddf52e5562ecbbf880e967534db7b251cfa6))
+
 ## [0.1.2](https://github.com/flakeyard/atom-nix/compare/v0.1.1...v0.1.2) (2026-11-18)
 
 
